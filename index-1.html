@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trường Đại học Lạc Hồng - Tuyển Sinh & Đào Tạo</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* --- BRAND COLORS (CHUẨN LHU.EDU.VN) --- */
+        :root {
+            --lhu-blue: #002855;
+            --lhu-blue-light: #0056b3;
+            --lhu-orange: #f26522;
+            --lhu-orange-hover: #d9530f;
+            --lhu-yellow: #f1ab00;
+            --lhu-yellow-hover: #d99a00;
+            --bg-gray: #f4f6f9;
+            --text-dark: #212529;
+            --text-muted: #6c757d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Roboto', sans-serif; background-color: var(--bg-gray); color: var(--text-dark); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+
+        /* --- 1. TOPBAR & HEADER --- */
+        .topbar {
+            background-color: var(--lhu-blue);
+            color: #ffffff;
+            font-size: 0.85rem;
+            padding: 8px 0;
+            border-bottom: 3px solid var(--lhu-orange);
+        }
+        .topbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .topbar-contact span { margin-right: 20px; }
+
+        header {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        header .container { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; padding-bottom: 12px; }
+
+        .logo-box img { height: 50px; width: auto; }
+
+        .nav-menu { display: flex; gap: 20px; list-style: none; }
+        .nav-link { font-weight: 700; color: var(--lhu-blue); text-transform: uppercase; font-size: 0.9rem; transition: 0.2s; }
+        .nav-link:hover { color: var(--lhu-orange); }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-auth-trigger {
+            background-color: transparent;
+            color: var(--lhu-blue);
+            border: 2px solid var(--lhu-blue);
+            padding: 8px 16px;
+            font-weight: 700;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-auth-trigger:hover {
+            background-color: var(--lhu-blue);
+            color: #ffffff;
+        }
+
+        .btn-apply {
+            background-color: var(--lhu-orange);
+            color: #fff;
+            padding: 10px 22px;
+            font-weight: 700;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        .btn-apply:hover { background-color: var(--lhu-orange-hover); }
+
+        /* --- 2. HERO BANNER --- */
+        .hero-banner {
+            position: relative;
+            background: url('https://lhu.edu.vn/Data/News/1/images/2023/Co-so-1.jpg') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, rgba(0, 40, 85, 0.9) 0%, rgba(0, 40, 85, 0.4) 100%);
+        }
+        .hero-content { position: relative; z-index: 2; color: #fff; max-width: 650px; }
+        .hero-content h1 { font-size: 2.8rem; font-weight: 900; line-height: 1.2; margin-bottom: 15px; text-transform: uppercase; }
+        .hero-content h1 span { color: var(--lhu-orange); }
+        .hero-content p { font-size: 1.15rem; margin-bottom: 25px; opacity: 0.95; }
+
+        /* --- SECTION TITLE COMMON --- */
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-header h2 { color: var(--lhu-blue); font-size: 2.2rem; font-weight: 900; text-transform: uppercase; }
+        .section-header h2 span { color: var(--lhu-orange); }
+        .title-line { width: 70px; height: 4px; background: var(--lhu-orange); margin: 10px auto 0; }
+
+        /* --- 3. PHẦN BÀI VIẾT 4 CỘT ẢNH MỚI --- */
+        .post-grid-section { padding: 40px 0; background-color: #ffffff; border-bottom: 1px solid #e5e5e5; }
+        
+        .btn-yellow-banner {
+            background-color: var(--lhu-yellow);
+            color: #ffffff;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            padding: 12px 24px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background 0.2s;
+        }
+        .btn-yellow-banner:hover { background-color: var(--lhu-yellow-hover); }
+
+        .grid-4-cols {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .post-card {
+            background: #ffffff;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border: 1px solid #eee;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+        }
+
+        .post-thumb {
+            width: 100%;
+            height: 160px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+
+        .post-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .post-card:hover .post-thumb img {
+            transform: scale(1.05);
+        }
+
+        .post-title {
+            padding: 15px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #333333;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+
+        .post-title a:hover {
+            color: var(--lhu-blue-light);
+        }
+
+        /* --- 4. PHẦN CHUYỂN TAB TỔNG QUAN --- */
+        .tab-section { padding: 60px 0; background-color: #fff; }
+
+        .tab-navigation {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--bg-gray);
+            border: 2px solid #e0e0e0;
+            color: var(--lhu-blue);
+            padding: 12px 25px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab-btn:hover { border-color: var(--lhu-orange); color: var(--lhu-orange); }
+        .tab-btn.active {
+            background-color: var(--lhu-blue);
+            color: #ffffff;
+            border-color: var(--lhu-blue);
+            box-shadow: 0 4px 10px rgba(0, 40, 85, 0.2);
+        }
+
+        .tab-content { display: none; animation: fadeIn 0.4s ease; }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .lhu-card {
+            background: #ffffff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--lhu-blue);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .lhu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-top-color: var(--lhu-orange);
+        }
+
+        .lhu-card img { width: 100%; height: 210px; object-fit: cover; }
+        .card-body { padding: 20px; }
+        .card-tag { font-size: 0.75rem; font-weight: 700; color: var(--lhu-orange); text-transform: uppercase; margin-bottom: 5px; }
+        .card-title { font-size: 1.15rem; font-weight: 700; color: var(--lhu-blue); margin-bottom: 10px; line-height: 1.4; }
+        .card-desc { font-size: 0.9rem; color: var(--text-muted); }
+
+        /* --- 5. THÔNG TIN TUYỂN SINH --- */
+        .tuyensinh-section { padding: 60px 0; background-color: var(--bg-gray); }
+
+        .ts-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .ts-method-card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--lhu-orange);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .ts-method-card h3 { color: var(--lhu-blue); font-size: 1.25rem; margin-bottom: 10px; }
+        .ts-method-card ul { list-style-position: inside; color: #444; font-size: 0.95rem; }
+        .ts-method-card li { margin-bottom: 6px; }
+
+        /* Form Đăng ký online */
+        .ts-form-box {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--lhu-blue);
+        }
+        .ts-form-box h3 { color: var(--lhu-blue); text-align: center; margin-bottom: 5px; font-size: 1.3rem; text-transform: uppercase; }
+        .ts-form-box p { text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px; }
+
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-weight: 700; font-size: 0.85rem; color: var(--lhu-blue); margin-bottom: 5px; }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            outline: none;
+        }
+        .form-control:focus { border-color: var(--lhu-orange); }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--lhu-orange);
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-submit:hover { background-color: var(--lhu-orange-hover); }
+
+        /* --- 6. FOOTER --- */
+        footer { background-color: var(--lhu-blue); color: #ffffff; padding: 50px 0 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px; }
+        .footer-col h3 { color: var(--lhu-orange); font-size: 1.1rem; margin-bottom: 15px; text-transform: uppercase; }
+        .footer-col p { font-size: 0.9rem; margin-bottom: 10px; opacity: 0.9; }
+        .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 0.85rem; opacity: 0.7; }
+
+        /* --- 7. MODAL ĐĂNG NHẬP / ĐĂNG KÝ --- */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .auth-modal.active { display: flex; }
+
+        .modal-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 420px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .modal-close:hover { color: var(--lhu-orange); }
+
+        .auth-tabs {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            background: var(--bg-gray);
+        }
+
+        .auth-tab-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            background: transparent;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .auth-tab-btn.active {
+            color: var(--lhu-blue);
+            background: #ffffff;
+            border-bottom: 3px solid var(--lhu-orange);
+        }
+
+        .auth-body { padding: 30px 25px; }
+
+        .auth-form { display: none; }
+        .auth-form.active { display: block; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .grid-4-cols { grid-template-columns: repeat(2, 1fr); }
+            .ts-grid { grid-template-columns: 1fr; }
+            .nav-menu { display: none; }
+        }
+        @media (max-width: 576px) {
+            .grid-4-cols { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+        <div class="container">
+            <div class="topbar-contact">
+                <span><i class="fa fa-phone"></i> (0251) 3952 778</span>
+                <span><i class="fa fa-envelope"></i> tuyensinh@lhu.edu.vn</span>
+            </div>
+            <div>
+                <span><i class="fa fa-map-marker-alt"></i> Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <a href="#" class="logo-box">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpTMoS30M1Ir7q7IcVUZDyeL0QkvX1aig2dMMefmhLdw&s=10" alt="Đại học Lạc Hồng Logo">
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#" class="nav-link">Trang chủ</a></li>
+                    <li><a href="#kham-pha" class="nav-link">Khám phá LHU</a></li>
+                    <li><a href="#tuyen-sinh" class="nav-link">Tuyển sinh</a></li>
+                    <li><a href="#lien-he" class="nav-link">Liên hệ</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="btn-auth-trigger" onclick="openAuthModal('login')"><i class="fa fa-user"></i> Đăng Nhập</button>
+                <a href="#dang-ky" class="btn-apply">Xét Tuyển Online</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- BANNER CHÍNH -->
+    <section class="hero-banner">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>ĐẠI HỌC <span>LẠC HỒNG</span></h1>
+                <p>Khát vọng bứt phá - Kiến tạo tương lai rực rỡ với các chương trình đào tạo đạt chuẩn quốc tế AUN-QA và ABET.</p>
+                <a href="#dang-ky" class="btn-apply" style="background-color: var(--lhu-blue); border: 2px solid var(--lhu-orange);">Nộp Hồ Sơ Ngay</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4 CỘT BÀI VIẾT TUYỂN SINH -->
+    <section class="post-grid-section">
+        <div class="container">
+            <a href="#tuyen-sinh" class="btn-yellow-banner">TUYỂN SINH SAU ĐẠI HỌC 2026</a>
+
+            <div class="grid-4-cols">
+                <!-- Bài viết 1 -->
+                <div class="post-card">
+                    <div class="post-thumb">
+                        <a href="#"><img src="https://tuyensinh.lhu.edu.vn/Data/News/425/images/HINH_THS.jpg" alt="Thông báo 1"></a>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="#">Thông báo Tuyển sinh chương trình Thạc sĩ - Đợt 3 năm 2026</a>
+                    </h3>
+                </div>
+
+                <!-- Bài viết 2 -->
+                <div class="post-card">
+                    <div class="post-thumb">
+                        <a href="#"><img src="https://tuyensinh.lhu.edu.vn/Data/News/425/images/THS.jpg" alt="Thông báo 2"></a>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="#">Thông báo tuyển sinh Chương trình Thạc sĩ - Đợt 2 năm 2026</a>
+                    </h3>
+                </div>
+
+                <!-- Bài viết 3 -->
+                <div class="post-card">
+                    <div class="post-thumb">
+                        <a href="#"><img src="https://tuyensinh.lhu.edu.vn/Data/News/425/images/IMG_0665.jpg" alt="Thông báo 3"></a>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="#">Thông báo Tuyển sinh chương trình Thạc sĩ - Đợt 1 năm 2026</a>
+                    </h3>
+                </div>
+
+                <!-- Bài viết 4 -->
+                <div class="post-card">
+                    <div class="post-thumb">
+                        <a href="#"><img src="https://tuyensinh.lhu.edu.vn/ViewPage/LHUVNB4/TuyenSinh/_Images/2025.03.27-thac-si.jpg" alt="Thông báo 4"></a>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="#">Thông báo Tuyển sinh Chương trình Thạc sĩ - Đợt 4 năm 2025</a>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHUYỂN TAB KHÁM PHÁ LHU -->
+    <section class="tab-section" id="kham-pha">
+        <div class="container">
+            
+            <div class="section-header">
+                <h2>Khám Phá <span>Đại Học Lạc Hồng</span></h2>
+                <div class="title-line"></div>
+            </div>
+
+            <div class="tab-navigation">
+                <button class="tab-btn active" onclick="switchTab(event, 'tab-gioithieu')">
+                    <i class="fa fa-university"></i> Tổng Quan LHU
+                </button>
+                <button class="tab-btn" onclick="switchTab(event, 'tab-daotao')">
+                    <i class="fa fa-graduation-cap"></i> Ngành Đào Tạo
+                </button>
+                <button class="tab-btn" onclick="switchTab(event, 'tab-thanhtuu')">
+                    <i class="fa fa-trophy"></i> Thành Tựu Nổi Bật
+                </button>
+            </div>
+
+            <!-- TAB 1: TỔNG QUAN -->
+            <div id="tab-gioithieu" class="tab-content active">
+                <div class="cards-grid">
+                    <div class="lhu-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY3jk_v7U-N5GaCkSCdoNoYmBNFw9msWC48KeCMdgrBg&s=10" alt="Cơ sở LHU">
+                        <div class="card-body">
+                            <div class="card-tag">Cơ sở vật chất</div>
+                            <h3 class="card-title">Hệ Thống 7 Cơ Sở Hiện Đại</h3>
+                            <p class="card-desc">Trường trang bị đầy đủ phòng thực hành, nhà xưởng chế tạo robot, phòng LAB vi mạch và thư viện thông minh.</p>
+                        </div>
+                    </div>
+                    <div class="lhu-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy91L3gI-Kyms-2ugFsPbEIIrHRmB1sRJz6BQsAx0JGw&s=10" alt="Kiểm định">
+                        <div class="card-body">
+                            <div class="card-tag">Chất lượng kiểm định</div>
+                            <h3 class="card-title">Chuẩn Quốc Tế AUN-QA & ABET</h3>
+                            <p class="card-desc">Đảm bảo chất lượng bằng cấp có giá trị cao, được các doanh nghiệp trong và ngoài nước công nhận.</p>
+                        </div>
+                    </div>
+                    <div class="lhu-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6KQpRASL7QMC_pkB7up4QDECijRnGukkU8ah51EiufA&s=10" alt="Doanh nghiệp">
+                        <div class="card-body">
+                            <div class="card-tag">Cam kết việc làm</div>
+                            <h3 class="card-title">Cam Kết 100% Giới Thiệu Việc Làm</h3>
+                            <p class="card-desc">Mạng lưới liên kết hơn 800 doanh nghiệp hàng đầu tại Đồng Nai và các khu công nghiệp lân cận.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: NGÀNH ĐÀO TẠO -->
+            <div id="tab-daotao" class="tab-content">
+                <div class="cards-grid">
+                    <div class="lhu-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJD8-s1N_MH02HwzjXTMtNUXwca8J2YZMa2Hd2peGfQA&s=10" alt="IT">
+                        <div class="card-body">
+                            <div class="card-tag">Khối Công Nghệ</div>
+                            <h3 class="card-title">Công Nghệ Thông Tin & Bán Dẫn</h3>
+                            <p class="card-desc">Đào tạo Lập trình web/app, Trí tuệ nhân tạo (AI), An toàn thông tin và Thiết kế Vi mạch.</p>
+                        </div>
+                    </div>
+                    <div class="lhu-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7KBrAeUBvuJw8eIJ68tLvdWBHeqvqz8Upz-wChk4Dhg&s=10" alt="Dược">
+                        <div class="card-body">
+                            <div class="card-tag">Khối Sức Khỏe</div>
+                            <h3 class="card-title">Dược Học Đại Học</h3>
+                            <p class="card-desc">Chương trình Dược sĩ đạt chuẩn AUN-QA, thực hành tại hệ thống phòng thí nghiệm hiện đại.</p>
+                        </div>
+                    </div>
+                    <div class="lhu-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqVAKZd3t6KfCj-iD0lqWVMf3cFVBuVlQng1lF3DBMNA&s=10" alt="Kinh tế">
+                        <div class="card-body">
+                            <div class="card-tag">Khối Kinh Tế</div>
+                            <h3 class="card-title">Quản Trị - Kế Toán - Logistics</h3>
+                            <p class="card-desc">Trang bị kiến thức thực chiến, đáp ứng nhu cầu nhân sự quản lý cho các tập đoàn đa quốc gia.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: THÀNH TỰU -->
+            <div id="tab-thanhtuu" class="tab-content">
+                <div class="cards-grid">
+                    <div class="lhu-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXQgqbIenpGAqnCgau_1C2v4yFPq5HRAxhx8obkEi4Gg&s=10" alt="Robocon">
+                        <div class="card-body">
+                            <div class="card-tag">Thi đấu kỹ thuật</div>
+                            <h3 class="card-title">9 Lần Vô Địch Robocon Việt Nam</h3>
+                            <p class="card-desc">Khẳng định vị thế hàng đầu về đào tạo công nghệ, tự động hóa và cơ điện tử tại Việt Nam.</p>
+                        </div>
+                    </div>
+                    <div class="lhu-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlFDFKtFtce759Nl-vgngKQXooghJPZONVkU-NX_nBlA&s=10" alt="Xe tiết kiệm">
+                        <div class="card-body">
+                            <div class="card-tag">Giải thưởng Quốc Tế</div>
+                            <h3 class="card-title">Vô Địch Shell Eco-Marathon Châu Á</h3>
+                            <p class="card-desc">Sinh viên LHU liên tục chế tạo xe tiết kiệm nhiên liệu đạt thành tích xuất sắc tầm khu vực.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION: THÔNG TIN TUYỂN SINH CHI TIẾT -->
+    <section class="tuyensinh-section" id="tuyen-sinh">
+        <div class="container">
+            
+            <div class="section-header">
+                <h2>Thông Tin <span>Tuyển Sinh</span></h2>
+                <div class="title-line"></div>
+            </div>
+
+            <div class="ts-grid">
+                
+                <!-- Cột Phương thức tuyển sinh -->
+                <div>
+                    <div class="ts-method-card">
+                        <h3><i class="fa fa-check-circle" style="color: var(--lhu-orange);"></i> Phương thức 1: Xét tuyển bằng Học bạ THPT</h3>
+                        <ul>
+                            <li><strong>Hình thức 1:</strong> Xét điểm trung bình Học bạ lớp 12.</li>
+                            <li><strong>Hình thức 2:</strong> Xét tổng điểm 3 môn tổ hợp lớp 12.</li>
+                            <li><strong>Hình thức 3:</strong> Xét điểm trung bình 3 học kỳ (HK1, HK2 lớp 11 & HK1 lớp 12).</li>
+                        </ul>
+                    </div>
+
+                    <div class="ts-method-card">
+                        <h3><i class="fa fa-check-circle" style="color: var(--lhu-orange);"></i> Phương thức 2: Xét điểm thi Tốt nghiệp THPT</h3>
+                        <ul>
+                            <li>Dựa trên tổng điểm thi THPT theo tổ hợp môn đăng ký xét tuyển.</li>
+                        </ul>
+                    </div>
+
+                    <div class="ts-method-card">
+                        <h3><i class="fa fa-check-circle" style="color: var(--lhu-orange);"></i> Phương thức 3: Xét điểm Thi Đánh Giá Năng Lực</h3>
+                        <ul>
+                            <li>Sử dụng kết quả kỳ thi Đội ngũ ĐGNL do ĐHQG TP.HCM tổ chức.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Cột Form Đăng ký xét tuyển Online -->
+                <div class="ts-form-box" id="dang-ky">
+                    <h3>Đăng Ký Xét Tuyển</h3>
+                    <p>Điền thông tin để nhận tư vấn học bổng & hướng dẫn nhập học</p>
+
+                    <form onsubmit="handleRegister(event)">
+                        <div class="form-group">
+                            <label>Họ và tên học sinh *</label>
+                            <input type="text" class="form-control" placeholder="Nguyễn Văn A" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Số điện thoại / Zalo *</label>
+                            <input type="tel" class="form-control" placeholder="0901234567" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ngành học quan tâm *</label>
+                            <select class="form-control" required>
+                                <option value="">-- Chọn Ngành Học --</option>
+                                <option value="cntt">Công nghệ thông tin</option>
+                                <option value="duoc">Dược học</option>
+                                <option value="quantri">Quản trị kinh doanh</option>
+                                <option value="dongphuong">Đông Phương Học (Anh/Hàn/Nhật/Trung)</option>
+                                <option value="codientu">Công nghệ kỹ thuật Cơ điện tử</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn-submit"><i class="fa fa-paper-plane"></i> GỬI ĐĂNG KÝ NGAY</button>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="lien-he">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Trường Đại Học Lạc Hồng</h3>
+                    <p><i class="fa fa-map-marker-alt"></i> Số 10 Huỳnh Văn Nghệ, P. Bửu Long, TP. Biên Hòa, Đồng Nai</p>
+                    <p><i class="fa fa-phone"></i> Tuyển sinh: (0251) 3952 778</p>
+                    <p><i class="fa fa-envelope"></i> tuyensinh@lhu.edu.vn</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Liên Kết Nhanh</h3>
+                    <p>• Cổng thông tin sinh viên</p>
+                    <p>• Lịch khai giảng khóa mới</p>
+                    <p>• Chính sách Học bổng LHU</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© Đại học Lạc Hồng (LHU). Bản quyền thuộc về LHU.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL ĐĂNG NHẬP / ĐĂNG KÝ -->
+    <div class="auth-modal" id="authModal">
+        <div class="modal-card">
+            <span class="modal-close" onclick="closeAuthModal()">&times;</span>
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" id="tabLoginBtn" onclick="switchAuthTab('login')">Đăng Nhập</button>
+                <button class="auth-tab-btn" id="tabRegisterBtn" onclick="switchAuthTab('register')">Đăng Ký</button>
+            </div>
+            <div class="auth-body">
+                
+                <!-- FORM ĐĂNG NHẬP -->
+                <form id="loginForm" class="auth-form active" onsubmit="handleLoginSubmit(event)">
+                    <div class="form-group">
+                        <label>Tên đăng nhập / Email *</label>
+                        <input type="text" class="form-control" placeholder="Nhập email hoặc Mã SV" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mật khẩu *</label>
+                        <input type="password" class="form-control" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn-submit" style="background-color: var(--lhu-blue);">ĐĂNG NHẬP</button>
+                </form>
+
+                <!-- FORM ĐĂNG KÝ TÀI KHỎAN -->
+                <form id="registerForm" class="auth-form" onsubmit="handleAuthRegisterSubmit(event)">
+                    <div class="form-group">
+                        <label>Họ và tên *</label>
+                        <input type="text" class="form-control" placeholder="Nguyễn Văn A" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Địa chỉ Email *</label>
+                        <input type="email" class="form-control" placeholder="vidu@gmail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mật khẩu *</label>
+                        <input type="password" class="form-control" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn-submit">TẠO TÀI KHỎAN</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT XỬ LÝ TAB, FORM & MODAL -->
+    <script>
+        // Hàm Chuyển Tab Khám Phá LHU
+        function switchTab(evt, tabId) {
+            let contents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < contents.length; i++) {
+                contents[i].classList.remove("active");
+            }
+
+            let buttons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Hàm xử lý khi bấm nút Gửi Đăng ký xét tuyển
+        function handleRegister(e) {
+            e.preventDefault();
+            alert("Cảm ơn bạn đã đăng ký! Bộ phận Tuyển sinh Đại học Lạc Hồng sẽ liên hệ hỗ trợ bạn sớm nhất.");
+        }
+
+        // --- XỬ LÝ MODAL ĐĂNG NHẬP / ĐĂNG KÝ ---
+        function openAuthModal(type) {
+            document.getElementById("authModal").classList.add("active");
+            switchAuthTab(type);
+        }
+
+        function closeAuthModal() {
+            document.getElementById("authModal").classList.remove("active");
+        }
+
+        function switchAuthTab(type) {
+            const loginForm = document.getElementById("loginForm");
+            const registerForm = document.getElementById("registerForm");
+            const tabLoginBtn = document.getElementById("tabLoginBtn");
+            const tabRegisterBtn = document.getElementById("tabRegisterBtn");
+
+            if (type === 'login') {
+                loginForm.classList.add("active");
+                registerForm.classList.remove("active");
+                tabLoginBtn.classList.add("active");
+                tabRegisterBtn.classList.remove("active");
+            } else {
+                registerForm.classList.add("active");
+                loginForm.classList.remove("active");
+                tabRegisterBtn.classList.add("active");
+                tabLoginBtn.classList.remove("active");
+            }
+        }
+
+        function handleLoginSubmit(e) {
+            e.preventDefault();
+            alert("Đăng nhập thành công!");
+            closeAuthModal();
+        }
+
+        function handleAuthRegisterSubmit(e) {
+            e.preventDefault();
+            alert("Đăng ký tài khoản thành công! Bạn có thể đăng nhập ngay.");
+            switchAuthTab('login');
+        }
+
+        // Đóng modal khi bấm ra ngoài nền đen
+        window.onclick = function(event) {
+            const modal = document.getElementById("authModal");
+            if (event.target == modal) {
+                closeAuthModal();
+            }
+        }
+    </script>
+
+</body>
+</html>
